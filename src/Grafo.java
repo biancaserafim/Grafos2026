@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Grafo<T> {
 
     public HashMap<T, LinkedList<Aresta>> meuGrafo;
@@ -39,20 +40,25 @@ public class Grafo<T> {
         }
     }
 
-   /*  public boolean alcance(T origem, T destino) {
+    public boolean alcance(T origem, T destino) {
         visitados = new ArrayList<>();
-        return existeCaminho(____, _______, visitados);
+        return existeCaminho(origem, destino, visitados);
     }
 
-    private boolean existeCaminho(T verticeAtual, T destino, ArrayList visitados) {
-        if (verticeAtual == _______) 
+    private boolean existeCaminho(T verticeAtual, T destino, ArrayList<T> visitados) {
+        if (verticeAtual.equals(destino))
             return true;
+
         visitados.add(verticeAtual);
+
         LinkedList<Aresta> adjacencias = meuGrafo.get(verticeAtual);
-        if (adjacencias != null) 
+
+        if (adjacencias != null)
             for (Aresta<T> aresta : adjacencias)
-                if (!visitados.contains(aresta._____) && existeCaminho(aresta._____, destino, visitados))
+                if (!visitados.contains(aresta.vertice) &&
+                        existeCaminho(aresta.vertice, destino, visitados))
                     return true;
+
         return false;
     }
 
@@ -61,13 +67,13 @@ public class Grafo<T> {
         explorarDFS(_______, visitados);
         return ________;
     }
-    
+
     private void explorarDFS(T verticeAtual, ArrayList<T> visitados) {
         visitados.add(______);
         LinkedList<Aresta> adjacencias = meuGrafo.get(______);
-        if (adjacencias != null) 
-            for (Aresta<T> aresta : adjacencias) 
-                if (!visitados._______(aresta.vertice)) 
+        if (adjacencias != null)
+            for (Aresta<T> aresta : adjacencias)
+                if (!visitados._______(aresta.vertice))
                     explorarDFS(aresta.vertice, ________);
     }
 
@@ -95,7 +101,6 @@ public class Grafo<T> {
         return visitados;
     }// fim funcao BFS
 
-    */
-    
+
 
 }

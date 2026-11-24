@@ -4,9 +4,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+
 public class App {
 
-    static void carregarCidades(Grafo<Cidade> meuGrafo, HashMap<Integer, Cidade> cepCidades, String caminhoArquivo) throws Exception {
+    static void carregarCidades(Grafo<Cidade> meuGrafo, HashMap<Integer, Cidade> cepCidades, String caminhoArquivo)
+            throws Exception {
         String linha;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(caminhoArquivo), StandardCharsets.UTF_8)) {
             while ((linha = br.readLine()) != null) {
@@ -23,7 +25,8 @@ public class App {
         }
     }
 
-    static void carregarArestas(Grafo<Cidade> meuGrafo, HashMap<Integer, Cidade> cepCidades, String caminhoArquivo, boolean direcionado) throws Exception {
+    static void carregarArestas(Grafo<Cidade> meuGrafo, HashMap<Integer, Cidade> cepCidades, String caminhoArquivo,
+            boolean direcionado) throws Exception {
         String linha;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(caminhoArquivo), StandardCharsets.UTF_8)) {
             while ((linha = br.readLine()) != null) {
@@ -51,7 +54,7 @@ public class App {
         System.out.print("Escolha uma opção: ");
     }
 
-    public static void main() throws Exception {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Grafo<Cidade> grafo = new Grafo<>();
         HashMap<Integer, Cidade> cepCidades = new HashMap<>();
@@ -62,7 +65,7 @@ public class App {
         if (tipoGrafo == 2) {
             direcionado = true;
         }
-        carregarCidades(grafo, cepCidades , "cidades5.csv");
+        carregarCidades(grafo, cepCidades, "cidades5.csv");
         carregarArestas(grafo, cepCidades, "arestas5.csv", direcionado);
         do {
             menu();
@@ -86,19 +89,19 @@ public class App {
                     break;
                 case 2:
                     System.out.print("Digite o vértice de origem: ");
-                      int cepOrigem = scanner.nextInt();
-                      Cidade origem = cepCidades.get(cepOrigem);
-                      System.out.println("Origem selecionada: " + origem);
-                     
+                    int cepOrigem = scanner.nextInt();
+                    Cidade origem = cepCidades.get(cepOrigem);
+                    System.out.println("Origem selecionada: " + origem);
+
                     System.out.print("Digite o vértice de destino: ");
                     int cepDestino = scanner.nextInt();
                     Cidade destino = cepCidades.get(cepDestino);
                     System.out.println("Destino selecionado: " + destino);
                     System.out.print("Digite o peso da aresta: ");
                     int peso = scanner.nextInt();
-                    if (grafo.adicionarAresta(origem, destino, peso, direcionado)) 
+                    if (grafo.adicionarAresta(origem, destino, peso, direcionado))
                         System.out.println("Aresta adicionada com sucesso.");
-                     else 
+                    else
                         System.out.println("Erro ao adicionar aresta.");
                     break;
                 case 3:
@@ -111,25 +114,27 @@ public class App {
                     System.out.print("Digite o vértice de destino: ");
                     int cepDestinoAlcance = scanner.nextInt();
                     Cidade destinoAlcance = cepCidades.get(cepDestinoAlcance);
-                   /* if (grafo.alcance(origemAlcance, destinoAlcance)) {
+
+                    if (grafo.alcance(origemAlcance, destinoAlcance)) {
                         System.out.println("Há um caminho entre " + origemAlcance + " e " + destinoAlcance);
                     } else {
                         System.out.println("Não há um caminho entre " + origemAlcance + " e " + destinoAlcance);
-                    } */
+                    }
+
                     break;
                 case 5:
                     System.out.print("Digite o vértice inicial para DFS: ");
                     int cepInicialDFS = scanner.nextInt();
                     Cidade inicialDFS = cepCidades.get(cepInicialDFS);
-                    //List<Cidade> resultadoDFS = grafo.buscaEmProfundidade(inicialDFS);
-                    //System.out.println("Ordem de visitação (DFS): " + resultadoDFS);
+                    // List<Cidade> resultadoDFS = grafo.buscaEmProfundidade(inicialDFS);
+                    // System.out.println("Ordem de visitação (DFS): " + resultadoDFS);
                     break;
                 case 6:
                     System.out.print("Digite o vértice inicial para BFS: ");
                     int cepInicialBFS = scanner.nextInt();
                     Cidade inicialBFS = cepCidades.get(cepInicialBFS);
-                    //List<Cidade> resultadoBFS = grafo.exploracaoEmLargura(inicialBFS);
-                    //System.out.println("Ordem de visitação (BFS): " + resultadoBFS);
+                    // List<Cidade> resultadoBFS = grafo.exploracaoEmLargura(inicialBFS);
+                    // System.out.println("Ordem de visitação (BFS): " + resultadoBFS);
                     break;
                 case 7:
                     System.out.print("Digite o vértice de origem para Dijkstra: ");
@@ -138,11 +143,14 @@ public class App {
                     System.out.print("Digite o vértice de destino: ");
                     cepDestino = scanner.nextInt();
                     destino = cepCidades.get(cepDestino);
-                   /* List<Cidade> caminho = grafo.dijkstra(origemDijkstra, destino);
-                    System.out.println("Menores caminhos a partir de " + origemDijkstra + "ate " + destino + ":"); 
-                    for (Cidade c : caminho) {
-                        System.out.println("|" + c);
-                    } */
+                    /*
+                     * List<Cidade> caminho = grafo.dijkstra(origemDijkstra, destino);
+                     * System.out.println("Menores caminhos a partir de " + origemDijkstra + "ate "
+                     * + destino + ":");
+                     * for (Cidade c : caminho) {
+                     * System.out.println("|" + c);
+                     * }
+                     */
                     break;
                 case 0:
                     System.out.println("Saindo...");
